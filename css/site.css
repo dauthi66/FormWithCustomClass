@@ -1,0 +1,29 @@
+body {
+    margin-left: 40%;
+}
+
+h1 {
+    padding-left: 1em;
+    font-family: 'ZCOOL KuaiLe', cursive;
+}
+
+input[type=text] {
+    /*creates padding around inside of text box*/
+    padding: .4em;
+}
+
+legend {
+    color: green;
+}
+
+fieldset {
+    border:2px solid green;
+    border-radius:8px;
+    max-width: 300px;
+    background-color: lightgray
+
+}
+
+form {
+    font-size: 130%;
+}

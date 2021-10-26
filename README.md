@@ -1,6 +1,6 @@
 # Add Product Form
 
-Practicing 
+Practicing:
 - TypeScript
 - Form creation
 - Validation
