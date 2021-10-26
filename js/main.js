@@ -18,12 +18,20 @@ function isAllDataValid() {
     return true;
 }
 function getVideoGame() {
-    var myGame = new VideoGame();
-    myGame.title = "Mario";
-    myGame.price = 19.99;
-    myGame.rating = "E";
-    myGame.digitalOnly = true;
-    return myGame;
+    var game = new VideoGame();
+    var titleInput = $("title");
+    var priceInput = $("price");
+    var ratingInput = $("rating");
+    var digitalOnlyInput = $("digitalOnly");
+    game.title = titleInput.value;
+    game.price = parseFloat(priceInput.value);
+    game.rating = ratingInput.value;
+    game.digitalOnly = digitalOnlyInput.checked;
+    console.log(game);
+    return game;
 }
 function displayGame(game) {
+}
+function $(id) {
+    return document.getElementById(id);
 }
