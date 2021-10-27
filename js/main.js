@@ -9,13 +9,32 @@ window.onload = function () {
 };
 function addVideoGame() {
     console.log("addVideoGame called");
+    clearAllErrors();
     if (isAllDataValid()) {
         var game = getVideoGame();
         displayGame(game);
     }
 }
 function isAllDataValid() {
-    return true;
+    var isValid = true;
+    var titleInput = $("title").value;
+    if (titleInput == "") {
+        isValid = false;
+        addErrorMessage("You did not enter a title");
+    }
+    var priceInput = $("price").value;
+    var priceInputFloat = parseFloat(priceInput);
+    if (priceInput == "" || isNaN(priceInputFloat)) {
+        isValid = false;
+        addErrorMessage("Price must be a number");
+    }
+    return isValid;
+}
+function addErrorMessage(errMsg) {
+    var errSummary = $("validation_summary");
+    var errItem = document.createElement("li");
+    errItem.innerText = errMsg;
+    errSummary.appendChild(errItem);
 }
 function getVideoGame() {
     var game = new VideoGame();
@@ -36,7 +55,7 @@ function displayGame(game) {
     var cartHeading = document.createElement("legend");
     var gameHeading = document.createElement("h3");
     var gameInfo = document.createElement("p");
-    cartHeading.innerText = "****Game Added***";
+    cartHeading.innerText = "**** " + game.title + " Added***";
     gameHeading.innerText = game.title;
     var isNotDigital = "";
     if (!game.digitalOnly) {
@@ -47,6 +66,10 @@ function displayGame(game) {
     cart.appendChild(cartHeading);
     cart.appendChild(gameHeading);
     cart.appendChild(gameInfo);
+}
+function clearAllErrors() {
+    var errSummary = $("validation_summary");
+    errSummary.innerText = "";
 }
 function $(id) {
     return document.getElementById(id);

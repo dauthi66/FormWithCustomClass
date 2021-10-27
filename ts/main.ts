@@ -13,6 +13,7 @@ window.onload = function(){
 
 function addVideoGame():void{
     console.log("addVideoGame called");
+    clearAllErrors();
 
     if(isAllDataValid()){
         let game = getVideoGame();
@@ -21,7 +22,35 @@ function addVideoGame():void{
 }
 
 function isAllDataValid():boolean{
-    return true;
+    let isValid = true;
+
+    let titleInput = $("title").value;
+    if (titleInput == ""){
+
+        isValid = false;
+
+        addErrorMessage("You did not enter a title");
+    }
+    let priceInput = $("price").value;
+    //convert input to float
+    let priceInputFloat = parseFloat(priceInput);
+    
+    //if the string is blank or if the parsed value is not a number
+    if(priceInput == "" ||  isNaN(priceInputFloat)){
+        isValid = false;
+
+        addErrorMessage("Price must be a number");
+    }
+
+    return isValid;
+}
+
+function addErrorMessage(errMsg:string):void {
+    let errSummary = $("validation_summary");
+    let errItem = document.createElement("li");
+
+    errItem.innerText = errMsg;
+    errSummary.appendChild(errItem);
 }
 
 /**
@@ -59,7 +88,7 @@ function displayGame(game:VideoGame):void{
     let gameInfo = document.createElement("p");
 
     //give headings to cart and list game title
-    cartHeading.innerText = "****Game Added***";
+    cartHeading.innerText = `**** ${game.title} Added***`;
     gameHeading.innerText = game.title;
     
     //report if game is digital
@@ -79,6 +108,15 @@ function displayGame(game:VideoGame):void{
     cart.appendChild(gameInfo);
 }
 
-function $(id):HTMLElement {
-    return document.getElementById(id);
+/**
+ * clears all errors in validation_summary
+ */
+function clearAllErrors():void{
+    let errSummary = $("validation_summary");
+    errSummary.innerText = "";
+}
+
+//refactor cast and get by id.
+function $(id):HTMLInputElement {
+    return <HTMLInputElement>document.getElementById(id);
 }

@@ -17,14 +17,24 @@ input[type=text] {
     padding: .4em;
 }
 
+/*error messages*/
+#validation_summary {
+    color: red;
+}
+
 /*general fieldset conditions*/
 fieldset {
     border-radius:8px;
-    max-width: 300px;
 }
 
-/*games added fieldset*/
-#displayGames > fieldset > legend {
+#displayGame fieldset {
+    border-radius:8px;
+    max-width: 200px;
+    margin-left: 3em;
+}
+
+/*games added fieldset title*/
+#displayGame > fieldset > legend {
     font-size: 130%;
 }
 
@@ -39,6 +49,7 @@ form > fieldset >legend {
 }
 
 form > fieldset {
+    max-width: 300px;
     border:2px solid green;
     background-color: lightgray
 
