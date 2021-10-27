@@ -47,8 +47,36 @@ function getVideoGame():VideoGame{
     return game;
 }
 
+
 function displayGame(game:VideoGame):void{
+    //find div to insert games.
+    let displayGameDiv = $("displayGame");
+
+    //create fieldset, legend(heading), h3 (game title), and p for description
+    let cart = document.createElement("fieldset");
+    let cartHeading = document.createElement("legend");
+    let gameHeading = document.createElement("h3");
+    let gameInfo = document.createElement("p");
+
+    //give headings to cart and list game title
+    cartHeading.innerText = "****Game Added***";
+    gameHeading.innerText = game.title;
     
+    //report if game is digital
+    let isNotDigital = "";
+    if(!game.digitalOnly){
+        isNotDigital = "not";
+    }
+                            //to fixed to round to nearest cent
+    gameInfo.innerText = `Price - $${game.price.toFixed(2)}\n 
+                          Rating: ${game.rating}\n
+                          This game is ${isNotDigital} digital`
+
+    //append a child (the game information) to the div
+    displayGameDiv.appendChild(cart);
+    cart.appendChild(cartHeading);
+    cart.appendChild(gameHeading);
+    cart.appendChild(gameInfo);
 }
 
 function $(id):HTMLElement {

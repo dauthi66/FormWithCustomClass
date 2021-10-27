@@ -7,23 +7,39 @@ h1 {
     font-family: 'ZCOOL KuaiLe', cursive;
 }
 
+
+form {
+    font-size: 130%;
+}
+
 input[type=text] {
     /*creates padding around inside of text box*/
     padding: .4em;
 }
 
-legend {
+/*general fieldset conditions*/
+fieldset {
+    border-radius:8px;
+    max-width: 300px;
+}
+
+/*games added fieldset*/
+#displayGames > fieldset > legend {
+    font-size: 130%;
+}
+
+/*games added game description*/
+#displayGames > fieldset > legend > p{
+    font-size: 100%;
+}
+
+/*search box fieldsets*/
+form > fieldset >legend {
     color: green;
 }
 
-fieldset {
+form > fieldset {
     border:2px solid green;
-    border-radius:8px;
-    max-width: 300px;
     background-color: lightgray
 
-}
-
-form {
-    font-size: 130%;
 }

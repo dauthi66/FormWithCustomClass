@@ -31,6 +31,22 @@ function getVideoGame() {
     return game;
 }
 function displayGame(game) {
+    var displayGameDiv = $("displayGame");
+    var cart = document.createElement("fieldset");
+    var cartHeading = document.createElement("legend");
+    var gameHeading = document.createElement("h3");
+    var gameInfo = document.createElement("p");
+    cartHeading.innerText = "****Game Added***";
+    gameHeading.innerText = game.title;
+    var isNotDigital = "";
+    if (!game.digitalOnly) {
+        isNotDigital = "not";
+    }
+    gameInfo.innerText = "Price - $" + game.price.toFixed(2) + "\n \n                          Rating: " + game.rating + "\n\n                          This game is " + isNotDigital + " digital";
+    displayGameDiv.appendChild(cart);
+    cart.appendChild(cartHeading);
+    cart.appendChild(gameHeading);
+    cart.appendChild(gameInfo);
 }
 function $(id) {
     return document.getElementById(id);
