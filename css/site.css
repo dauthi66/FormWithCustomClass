@@ -1,5 +1,6 @@
 body {
-    background-image: url(images/retroBackground.jpg);
+    /* using ../ pushes directory up one level */
+    background-image: url(../images/retroBackground.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     margin-left: 40%;
