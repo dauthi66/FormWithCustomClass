@@ -7,6 +7,10 @@
     <title>Add Product Form</title>
     <link href="https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/site.css">
+    <audio id="sonic_ring">
+        <source src="sounds/sonic_ring.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
 </head>
 <body>
     <h1>Add Video Games</h1>
@@ -25,10 +29,11 @@
                 <input type="text" id="price" placeholder="Price">
                 <br>
                 <label for="rating">Rating:</label>
-                <select id="rating">
-                    <option>E</option>
-                    <option>T</option>
-                    <option>M</option>
+                <select id="rating"> 
+                    <option value="">Choose a rating</option>
+                    <option value="E for Everyone">Everyone</option>
+                    <option value="T for Teen" >Teen</option>
+                    <option value="M for Mature">Mature</option>
                 </select>
                 <br>
                 <label for="online">Digital Only</label>

@@ -1,3 +1,4 @@
+//A video game object
 class VideoGame{
     title:string;
     price:number;
@@ -11,27 +12,40 @@ window.onload = function(){
     addBtn.onclick = addVideoGame;
 }
 
+/**
+ * if input is valid, displays added a video game to user and plays sound
+ */
 function addVideoGame():void{
+    //log in cosnole button was pressed and function called
     console.log("addVideoGame called");
+
     clearAllErrors();
 
     if(isAllDataValid()){
         let game = getVideoGame();
+        //set sound as audio element and play
+        let sonicRing = <HTMLAudioElement>document.getElementById("sonic_ring");
+        sonicRing.play();
+
         displayGame(game);
     }
 }
 
+/**
+ * 
+ * @returns whether all input is valid, if any is false calls for an error message to be created
+ */
 function isAllDataValid():boolean{
     let isValid = true;
 
-    let titleInput = $("title").value;
+    let titleInput = $HTMLinput("title").value;
     if (titleInput == ""){
 
         isValid = false;
 
         addErrorMessage("You did not enter a title");
     }
-    let priceInput = $("price").value;
+    let priceInput = $HTMLinput("price").value;
     //convert input to float
     let priceInputFloat = parseFloat(priceInput);
     
@@ -41,12 +55,22 @@ function isAllDataValid():boolean{
 
         addErrorMessage("Price must be a number");
     }
+    //if game rating is not chosen
+    let ratingInput = (<HTMLOptionElement>$("rating")).value;
+    if (ratingInput == "") {
+        isValid = false;
+        addErrorMessage("You must choose a rating");
+    }
 
     return isValid;
 }
 
+/**
+ * appends a li with an error message above search menu
+ * @param  errMsg Error message given to user when input is invalid
+ */
 function addErrorMessage(errMsg:string):void {
-    let errSummary = $("validation_summary");
+    let errSummary = $HTMLinput("validation_summary");
     let errItem = document.createElement("li");
 
     errItem.innerText = errMsg;
@@ -54,17 +78,18 @@ function addErrorMessage(errMsg:string):void {
 }
 
 /**
- * Gathers information for form to populate VideoGame
+ * Gathers information from form to populate VideoGame
  * @returns a VideoGame object
  */
 function getVideoGame():VideoGame{
+
     //create game, populate using form, return.
     let game = new VideoGame();
 
-    let titleInput = <HTMLInputElement>$("title");
-    let priceInput = <HTMLInputElement>$("price");
-    let ratingInput = <HTMLInputElement>$("rating");
-    let digitalOnlyInput = <HTMLInputElement>$("digitalOnly");
+    let titleInput = <HTMLInputElement>$HTMLinput("title");
+    let priceInput = <HTMLInputElement>$HTMLinput("price");
+    let ratingInput = <HTMLInputElement>$HTMLinput("rating");
+    let digitalOnlyInput = <HTMLInputElement>$HTMLinput("digitalOnly");
 
     game.title = titleInput.value;
     game.price = parseFloat(priceInput.value);
@@ -75,11 +100,13 @@ function getVideoGame():VideoGame{
     console.log(game);
     return game;
 }
-
-
+/**
+ * Takes a VideoGame object and displays it in a fieldset (cart).
+ * @param game VideoGame object
+ */
 function displayGame(game:VideoGame):void{
     //find div to insert games.
-    let displayGameDiv = $("displayGame");
+    let displayGameDiv = $HTMLinput("displayGame");
 
     //create fieldset, legend(heading), h3 (game title), and p for description
     let cart = document.createElement("fieldset");
@@ -88,7 +115,7 @@ function displayGame(game:VideoGame):void{
     let gameInfo = document.createElement("p");
 
     //give headings to cart and list game title
-    cartHeading.innerText = `**** ${game.title} Added***`;
+    cartHeading.innerText = `****Game Added***`;
     gameHeading.innerText = game.title;
     
     //report if game is digital
@@ -112,11 +139,18 @@ function displayGame(game:VideoGame):void{
  * clears all errors in validation_summary
  */
 function clearAllErrors():void{
-    let errSummary = $("validation_summary");
+    let errSummary = $HTMLinput("validation_summary");
     errSummary.innerText = "";
 }
 
+
+
 //refactor cast and get by id.
-function $(id):HTMLInputElement {
+function $HTMLinput(id):HTMLInputElement {
     return <HTMLInputElement>document.getElementById(id);
+}
+
+//refactor cast and get by id.
+function $(id):HTMLElement {
+    return document.getElementById(id);
 }

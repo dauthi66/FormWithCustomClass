@@ -1,10 +1,18 @@
 body {
+    background-image: url(/images/retroBackground.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
     margin-left: 40%;
 }
 
 h1 {
     padding-left: 1em;
     font-family: 'ZCOOL KuaiLe', cursive;
+}
+
+/*title of game in cart*/
+h3 {
+    text-decoration: underline;
 }
 
 
@@ -20,6 +28,8 @@ input[type=text] {
 /*error messages*/
 #validation_summary {
     color: red;
+    font-weight: bold;
+    font-style: italic;
 }
 
 /*general fieldset conditions*/
@@ -39,8 +49,10 @@ fieldset {
 }
 
 /*games added game description*/
-#displayGames > fieldset > legend > p{
+#displayGame > fieldset > p{
     font-size: 100%;
+    font-weight:bolder;
+    line-height: .6em;
 }
 
 /*search box fieldsets*/
@@ -53,4 +65,11 @@ form > fieldset {
     border:2px solid green;
     background-color: lightgray
 
+}
+
+/*change centering format at phone size*/
+@media only screen and (max-width: 500px) {
+    body {
+        margin-left: 2em;
+    }
 }

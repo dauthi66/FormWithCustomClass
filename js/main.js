@@ -12,36 +12,43 @@ function addVideoGame() {
     clearAllErrors();
     if (isAllDataValid()) {
         var game = getVideoGame();
+        var sonicRing = document.getElementById("sonic_ring");
+        sonicRing.play();
         displayGame(game);
     }
 }
 function isAllDataValid() {
     var isValid = true;
-    var titleInput = $("title").value;
+    var titleInput = $HTMLinput("title").value;
     if (titleInput == "") {
         isValid = false;
         addErrorMessage("You did not enter a title");
     }
-    var priceInput = $("price").value;
+    var priceInput = $HTMLinput("price").value;
     var priceInputFloat = parseFloat(priceInput);
     if (priceInput == "" || isNaN(priceInputFloat)) {
         isValid = false;
         addErrorMessage("Price must be a number");
     }
+    var ratingInput = $("rating").value;
+    if (ratingInput == "") {
+        isValid = false;
+        addErrorMessage("You must choose a rating");
+    }
     return isValid;
 }
 function addErrorMessage(errMsg) {
-    var errSummary = $("validation_summary");
+    var errSummary = $HTMLinput("validation_summary");
     var errItem = document.createElement("li");
     errItem.innerText = errMsg;
     errSummary.appendChild(errItem);
 }
 function getVideoGame() {
     var game = new VideoGame();
-    var titleInput = $("title");
-    var priceInput = $("price");
-    var ratingInput = $("rating");
-    var digitalOnlyInput = $("digitalOnly");
+    var titleInput = $HTMLinput("title");
+    var priceInput = $HTMLinput("price");
+    var ratingInput = $HTMLinput("rating");
+    var digitalOnlyInput = $HTMLinput("digitalOnly");
     game.title = titleInput.value;
     game.price = parseFloat(priceInput.value);
     game.rating = ratingInput.value;
@@ -50,12 +57,12 @@ function getVideoGame() {
     return game;
 }
 function displayGame(game) {
-    var displayGameDiv = $("displayGame");
+    var displayGameDiv = $HTMLinput("displayGame");
     var cart = document.createElement("fieldset");
     var cartHeading = document.createElement("legend");
     var gameHeading = document.createElement("h3");
     var gameInfo = document.createElement("p");
-    cartHeading.innerText = "**** " + game.title + " Added***";
+    cartHeading.innerText = "****Game Added***";
     gameHeading.innerText = game.title;
     var isNotDigital = "";
     if (!game.digitalOnly) {
@@ -68,8 +75,11 @@ function displayGame(game) {
     cart.appendChild(gameInfo);
 }
 function clearAllErrors() {
-    var errSummary = $("validation_summary");
+    var errSummary = $HTMLinput("validation_summary");
     errSummary.innerText = "";
+}
+function $HTMLinput(id) {
+    return document.getElementById(id);
 }
 function $(id) {
     return document.getElementById(id);
